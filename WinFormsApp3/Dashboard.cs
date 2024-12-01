@@ -61,15 +61,8 @@ namespace WinFormsApp3
             int panelWidth = this.ClientSize.Width / 3; // Adjust the right panel width
             int panelHeight = this.ClientSize.Height - 50; // Adjust height proportionally
 
-            flowLayoutPanel1.Width = panelWidth; // Set width dynamically
-            flowLayoutPanel1.Height = panelHeight; // Set height dynamically
-            flowLayoutPanel1.Location = new Point(this.ClientSize.Width - panelWidth, 10); // Align to the right
-
             // Ensure buttons/textboxes inside the panel resize correctly
-            foreach (Control control in flowLayoutPanel1.Controls)
-            {
-                control.Width = panelWidth - 20; // Adjust width for spacing
-            }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
