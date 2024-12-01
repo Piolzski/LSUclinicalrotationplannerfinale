@@ -656,7 +656,7 @@ namespace WinFormsApp3
 
         private void panel6_Paint(object sender, PaintEventArgs e)
         {
-
+//newui
         }
     }
 }
