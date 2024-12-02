@@ -260,17 +260,25 @@ namespace WinFormsApp3
 
                     // Retrieve selected shift times from TimeShiftList ListBox (optional)
                     var selectedShifts = lstTimeShifts.SelectedItems.Cast<string>().ToArray();
-                    if (selectedShifts.Length == 0)
-                    {
-                        selectedShifts = new[] { "7am to 3pm", "3pm to 11pm", "11pm to 7am" }; // Add default shifts, including the new 11pm to 7am
-                    }
 
                     // Retrieve year levels from ListBoxYearLevels (optional)
                     var yearLevels = lstYearLevels.SelectedItems.Cast<string>().Select(s => s.Trim()).ToArray();
+
+                    // Validate that year levels and timeshifts are selected
                     if (yearLevels.Length == 0)
                     {
-                        yearLevels = new[] { "2nd Year", "3rd Year", "4th Year" }; // Default year levels
+                        MessageBox.Show("Error: Please select at least one year level before deploying the rotation sheet.",
+                                        "Missing Year Levels", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop deployment
                     }
+
+                    if (selectedShifts.Length == 0)
+                    {
+                        MessageBox.Show("Error: Please select at least one time shift before deploying the rotation sheet.",
+                                        "Missing Time Shifts", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop deployment
+                    }
+
 
                     // Retrieve groups from textboxes (use the entered values)
                     int groupCount2ndYear = int.TryParse(groupbox2.Text, out int groupBox2Groups) ? groupBox2Groups : 0;
@@ -280,27 +288,29 @@ namespace WinFormsApp3
                     // Retrieve start and end dates from the DateTimePickers
                     DateTime startDate = dtpStartDate.Value;
                     DateTime endDate = dtpEndDate.Value;
+
+                    // Validate that the start date is not after the end date
                     if (startDate > endDate)
                     {
-                        MessageBox.Show("Start date cannot be after the end date. Using default values.");
-                        startDate = DateTime.Now;
-                        endDate = startDate.AddDays(7 * numberOfRotations); // Default to one week per rotation
+                        MessageBox.Show("Error: The start date cannot be after the end date. Please correct the dates and try again.",
+                                        "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop the deployment process
                     }
 
                     Dictionary<string, int> yearLevelStartRow = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
-        {
-            { "2nd Year", 2 },  // Start at row 2
-            { "3rd Year", 18 },  // Skip 13 rows from 2nd Year
-            { "4th Year", 34 }   // Skip 13 rows from 3rd Year
-        };
+                    {
+                        { "2nd Year", 2 },  // Start at row 2
+                        { "3rd Year", 18 },  // Skip 13 rows from 2nd Year
+                        { "4th Year", 34 }   // Skip 13 rows from 3rd Year
+                    };
 
                     // Map the group counts to the corresponding year levels
                     Dictionary<string, int> groupCounts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
-        {
-            { "2nd Year", groupCount2ndYear },
-            { "3rd Year", groupCount3rdYear },
-            { "4th Year", groupCount4thYear }
-        };
+                    {
+                        { "2nd Year", groupCount2ndYear },
+                        { "3rd Year", groupCount3rdYear },
+                        { "4th Year", groupCount4thYear }
+                    };
 
                     // Adjust column widths for better readability
                     worksheet.Column(1).Width = 18;  // Year level and labels
@@ -616,17 +626,17 @@ namespace WinFormsApp3
 
                     // Define starting rows and map year levels to integer values
                     Dictionary<string, (int StartRow, int YearInt)> yearLevelStartRows = new Dictionary<string, (int, int)>(StringComparer.OrdinalIgnoreCase) {
-            { "2nd year", (6, 2) },  // Start row and integer mapping for 2nd Year
-            { "3rd year", (22, 3) },  // Start row and integer mapping for 3rd Year
-            { "4th year", (38, 4) }   // Start row and integer mapping for 4th Year
-        };
+                        { "2nd year", (6, 2) },  // Start row and integer mapping for 2nd Year
+                        { "3rd year", (22, 3) },  // Start row and integer mapping for 3rd Year
+                        { "4th year", (38, 4) }   // Start row and integer mapping for 4th Year
+                    };
 
                     // Define the base columns for each timeshift
                     Dictionary<string, int> baseTimeshiftColumns = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase) {
-            { "7am to 3pm", 2 },   // Base column for 7am to 3pm
-            { "3pm to 11pm", 3 },  // Base column for 3pm to 11pm
-            { "11pm to 7am", 4 }   // Base column for 11pm to 7am
-        };
+                        { "7am to 3pm", 2 },   // Base column for 7am to 3pm
+                        { "3pm to 11pm", 3 },  // Base column for 3pm to 11pm
+                        { "11pm to 7am", 4 }   // Base column for 11pm to 7am
+                    };
 
                     // Retrieve the selected year levels
                     var selectedYearLevels = lstYearLevels.SelectedItems.Cast<string>().Select(s => s.Trim().ToLowerInvariant()).ToArray();
@@ -661,7 +671,6 @@ namespace WinFormsApp3
                     // Initialize random number generator
                     Random random = new Random();
 
-                    // Function to find the last week for the specific Clinical Instructor (based on both color coding and white background)
                     int GetLastWeekForCIBasedOnColor(XLColor ciBackgroundColor, XLColor ciFontColor)
                     {
                         int lastWeek = 0;
@@ -671,16 +680,25 @@ namespace WinFormsApp3
                         {
                             int timeshiftColumn = baseTimeshiftColumns[timeshift];
 
+                            // Dynamically calculate the maximum number of weeks based on the last used column
+                            int maxWeeks = (worksheet.LastColumnUsed().ColumnNumber() - timeshiftColumn) / 3 + 1;
+
                             // Loop through each year level to find the last week where a C.I. rotation exists based on color
                             foreach (var yearLevel in yearLevelStartRows.Keys)
                             {
                                 int startingRowForYearLevel = yearLevelStartRows[yearLevel].StartRow;
 
                                 // Loop through the weeks to find the last filled week for the C.I.
-                                for (int week = 0; week < 50; week++) // Assuming 50 as the maximum number of weeks
+                                for (int week = 0; week < maxWeeks; week++) // Use dynamically calculated maxWeeks
                                 {
                                     int weekOffset = week * 3; // Each week starts 3 columns later
                                     int targetColumn = timeshiftColumn + weekOffset;
+
+                                    // Validate column before accessing
+                                    if (targetColumn > worksheet.LastColumnUsed().ColumnNumber())
+                                    {
+                                        throw new InvalidOperationException($"Invalid operation: Attempting to assign rotation to non-existent column {targetColumn} for week {week + 1}.");
+                                    }
 
                                     bool isWeekFilledForCI = false;
 
@@ -703,6 +721,16 @@ namespace WinFormsApp3
                                     if (isWeekFilledForCI)
                                     {
                                         lastWeek = Math.Max(lastWeek, week + 1);
+
+                                        // Dynamically calculate the maximum number of weeks based on the rotation sheet
+                                        int calculatedMaxWeeks = (worksheet.LastColumnUsed().ColumnNumber() - baseTimeshiftColumns.First().Value) / 3 + 1;
+
+
+                                        // Check if lastWeek exceeds the dynamic maxWeeks
+                                        if (lastWeek > maxWeeks)
+                                        {
+                                            throw new InvalidOperationException($"Error: The schedule exceeds the maximum limit of {maxWeeks} weeks. Week {lastWeek} is invalid.");
+                                        }
                                     }
                                 }
                             }
@@ -711,8 +739,10 @@ namespace WinFormsApp3
                         return lastWeek;
                     }
 
+
                     // Use the modified function to get the last week for the selected C.I. based on both background and font colors
                     int lastWeekForCI = GetLastWeekForCIBasedOnColor(backgroundColor, fontColor);
+
 
                     // Global tracking dictionary to avoid conflicts across C.I.s
                     var globalGroupAssignments = new Dictionary<(int yearLevel, string timeshift, int week), HashSet<int>>();
@@ -769,6 +799,7 @@ namespace WinFormsApp3
                             assignedWeeks[(yearLevelInt, timeshift)] = new HashSet<int>();
                         }
                     }
+
                     // Function to get the next available group for assignment
                     int GetNextAvailableGroup(List<int> groupsPool, HashSet<int> localUsedGroups, HashSet<int> globalUsedGroups, int yearLevel)
                     {
@@ -1645,6 +1676,6 @@ namespace WinFormsApp3
 
         }
 
-     
+      
     }
 }
