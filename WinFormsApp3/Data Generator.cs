@@ -314,10 +314,8 @@ namespace WinFormsApp3
                             }
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("Area ID is required to delete a record.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    // Removed the else block
+
 
 
 

@@ -73,33 +73,37 @@
             // TextBoxDept
             // 
             TextBoxDept.BackColor = SystemColors.Window;
-            TextBoxDept.Location = new Point(404, 39);
+            TextBoxDept.Location = new Point(462, 46);
+            TextBoxDept.Margin = new Padding(3, 4, 3, 4);
             TextBoxDept.Name = "TextBoxDept";
-            TextBoxDept.Size = new Size(209, 25);
+            TextBoxDept.Size = new Size(238, 27);
             TextBoxDept.TabIndex = 19;
             // 
             // textBoxTime
             // 
             textBoxTime.BackColor = SystemColors.Window;
-            textBoxTime.Location = new Point(110, 117);
+            textBoxTime.Location = new Point(126, 138);
+            textBoxTime.Margin = new Padding(3, 4, 3, 4);
             textBoxTime.Name = "textBoxTime";
-            textBoxTime.Size = new Size(209, 25);
+            textBoxTime.Size = new Size(238, 27);
             textBoxTime.TabIndex = 9;
             // 
             // textBoxSpec
             // 
             textBoxSpec.BackColor = SystemColors.Window;
-            textBoxSpec.Location = new Point(211, 178);
+            textBoxSpec.Location = new Point(241, 209);
+            textBoxSpec.Margin = new Padding(3, 4, 3, 4);
             textBoxSpec.Name = "textBoxSpec";
-            textBoxSpec.Size = new Size(216, 25);
+            textBoxSpec.Size = new Size(246, 29);
             textBoxSpec.TabIndex = 6;
             // 
             // textBoxName
             // 
             textBoxName.BackColor = SystemColors.Window;
-            textBoxName.Location = new Point(211, 132);
+            textBoxName.Location = new Point(241, 155);
+            textBoxName.Margin = new Padding(3, 4, 3, 4);
             textBoxName.Name = "textBoxName";
-            textBoxName.Size = new Size(216, 25);
+            textBoxName.Size = new Size(246, 29);
             textBoxName.TabIndex = 5;
             // 
             // label3
@@ -108,9 +112,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Black", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(110, 28);
+            label3.Location = new Point(126, 33);
             label3.Name = "label3";
-            label3.Size = new Size(260, 27);
+            label3.Size = new Size(326, 33);
             label3.TabIndex = 2;
             label3.Text = "CLINICAL INSTRUCTOR";
             label3.Click += label3_Click;
@@ -121,9 +125,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Black", 12F, FontStyle.Bold);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(41, 178);
+            label2.Location = new Point(47, 209);
             label2.Name = "label2";
-            label2.Size = new Size(120, 23);
+            label2.Size = new Size(148, 28);
             label2.TabIndex = 1;
             label2.Text = "Designation:";
             label2.Click += label2_Click;
@@ -134,9 +138,9 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Black", 12F, FontStyle.Bold);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(41, 132);
+            label1.Location = new Point(47, 155);
             label1.Name = "label1";
-            label1.Size = new Size(66, 23);
+            label1.Size = new Size(82, 28);
             label1.TabIndex = 0;
             label1.Text = "Name:";
             label1.Click += label1_Click;
@@ -147,9 +151,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Black", 12.25F, FontStyle.Bold);
             label5.ForeColor = Color.Black;
-            label5.Location = new Point(142, 87);
+            label5.Location = new Point(162, 102);
             label5.Name = "label5";
-            label5.Size = new Size(106, 24);
+            label5.Size = new Size(130, 30);
             label5.TabIndex = 25;
             label5.Text = "Time Shift";
             // 
@@ -159,9 +163,9 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Black", 12.25F, FontStyle.Bold);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(479, 9);
+            label4.Location = new Point(547, 11);
             label4.Name = "label4";
-            label4.Size = new Size(53, 24);
+            label4.Size = new Size(66, 30);
             label4.TabIndex = 26;
             label4.Text = "Area";
             label4.Click += label4_Click_1;
@@ -172,18 +176,19 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial Black", 12F, FontStyle.Bold);
             label8.ForeColor = Color.Black;
-            label8.Location = new Point(41, 85);
+            label8.Location = new Point(47, 100);
             label8.Name = "label8";
-            label8.Size = new Size(127, 23);
+            label8.Size = new Size(159, 28);
             label8.TabIndex = 27;
             label8.Text = "Instructor ID:";
             // 
             // textBoxID
             // 
             textBoxID.BackColor = SystemColors.Window;
-            textBoxID.Location = new Point(211, 84);
+            textBoxID.Location = new Point(241, 99);
+            textBoxID.Margin = new Padding(3, 4, 3, 4);
             textBoxID.Name = "textBoxID";
-            textBoxID.Size = new Size(216, 25);
+            textBoxID.Size = new Size(246, 29);
             textBoxID.TabIndex = 28;
             // 
             // label12
@@ -192,9 +197,9 @@
             label12.BackColor = Color.Transparent;
             label12.Font = new Font("Arial Black", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.Black;
-            label12.Location = new Point(185, 17);
+            label12.Location = new Point(211, 20);
             label12.Name = "label12";
-            label12.Size = new Size(122, 27);
+            label12.Size = new Size(152, 33);
             label12.TabIndex = 29;
             label12.Text = "Year Level";
             label12.Click += label12_Click;
@@ -205,25 +210,27 @@
             label13.BackColor = Color.Transparent;
             label13.Font = new Font("Arial Black", 12F, FontStyle.Bold);
             label13.ForeColor = Color.Black;
-            label13.Location = new Point(61, 98);
+            label13.Location = new Point(70, 115);
             label13.Name = "label13";
-            label13.Size = new Size(102, 23);
+            label13.Size = new Size(124, 28);
             label13.TabIndex = 30;
             label13.Text = "Year Level";
             // 
             // textBoxLVL
             // 
-            textBoxLVL.Location = new Point(221, 101);
+            textBoxLVL.Location = new Point(253, 119);
+            textBoxLVL.Margin = new Padding(3, 4, 3, 4);
             textBoxLVL.Name = "textBoxLVL";
-            textBoxLVL.Size = new Size(180, 25);
+            textBoxLVL.Size = new Size(205, 27);
             textBoxLVL.TabIndex = 31;
             textBoxLVL.TextChanged += textBox2_TextChanged;
             // 
             // textBoxLVLID
             // 
-            textBoxLVLID.Location = new Point(222, 59);
+            textBoxLVLID.Location = new Point(254, 69);
+            textBoxLVLID.Margin = new Padding(3, 4, 3, 4);
             textBoxLVLID.Name = "textBoxLVLID";
-            textBoxLVLID.Size = new Size(179, 25);
+            textBoxLVLID.Size = new Size(204, 27);
             textBoxLVLID.TabIndex = 33;
             // 
             // label14
@@ -232,9 +239,9 @@
             label14.BackColor = Color.Transparent;
             label14.Font = new Font("Arial Black", 12F, FontStyle.Bold);
             label14.ForeColor = Color.Black;
-            label14.Location = new Point(61, 59);
+            label14.Location = new Point(70, 69);
             label14.Name = "label14";
-            label14.Size = new Size(125, 23);
+            label14.Size = new Size(155, 28);
             label14.TabIndex = 32;
             label14.Text = "Year Level ID";
             label14.Click += label14_Click;
@@ -245,18 +252,19 @@
             label15.BackColor = Color.Transparent;
             label15.Font = new Font("Arial Black", 12.25F, FontStyle.Bold);
             label15.ForeColor = Color.Black;
-            label15.Location = new Point(429, 87);
+            label15.Location = new Point(490, 102);
             label15.Name = "label15";
-            label15.Size = new Size(143, 24);
+            label15.Size = new Size(179, 30);
             label15.TabIndex = 36;
             label15.Text = "Group Number";
             // 
             // textBoxgrp
             // 
             textBoxgrp.BackColor = SystemColors.Window;
-            textBoxgrp.Location = new Point(404, 117);
+            textBoxgrp.Location = new Point(462, 138);
+            textBoxgrp.Margin = new Padding(3, 4, 3, 4);
             textBoxgrp.Name = "textBoxgrp";
-            textBoxgrp.Size = new Size(209, 25);
+            textBoxgrp.Size = new Size(238, 27);
             textBoxgrp.TabIndex = 35;
             textBoxgrp.TextChanged += textBoxgrp_TextChanged;
             // 
@@ -266,18 +274,19 @@
             label17.BackColor = Color.Transparent;
             label17.Font = new Font("Arial Black", 12F, FontStyle.Bold);
             label17.ForeColor = Color.Black;
-            label17.Location = new Point(41, 223);
+            label17.Location = new Point(47, 262);
             label17.Name = "label17";
-            label17.Size = new Size(111, 23);
+            label17.Size = new Size(139, 28);
             label17.TabIndex = 37;
             label17.Text = "Color Code:";
             // 
             // textBoxColorCode
             // 
             textBoxColorCode.BackColor = SystemColors.Window;
-            textBoxColorCode.Location = new Point(211, 222);
+            textBoxColorCode.Location = new Point(241, 261);
+            textBoxColorCode.Margin = new Padding(3, 4, 3, 4);
             textBoxColorCode.Name = "textBoxColorCode";
-            textBoxColorCode.Size = new Size(216, 25);
+            textBoxColorCode.Size = new Size(246, 29);
             textBoxColorCode.TabIndex = 38;
             // 
             // label18
@@ -286,25 +295,25 @@
             label18.BackColor = Color.Transparent;
             label18.Font = new Font("Arial Black", 9.8F, FontStyle.Bold);
             label18.ForeColor = Color.Black;
-            label18.Location = new Point(18, 269);
+            label18.Location = new Point(21, 316);
             label18.Name = "label18";
-            label18.Size = new Size(187, 19);
+            label18.Size = new Size(228, 24);
             label18.TabIndex = 39;
             label18.Text = "Background Text Color:";
             // 
             // textBoxTextColor
             // 
             textBoxTextColor.BackColor = SystemColors.Window;
-            textBoxTextColor.Location = new Point(211, 266);
+            textBoxTextColor.Location = new Point(241, 313);
+            textBoxTextColor.Margin = new Padding(3, 4, 3, 4);
             textBoxTextColor.Name = "textBoxTextColor";
-            textBoxTextColor.Size = new Size(216, 25);
+            textBoxTextColor.Size = new Size(246, 29);
             textBoxTextColor.TabIndex = 40;
             // 
             // panel1
             // 
             panel1.BackColor = Color.PaleGoldenrod;
             panel1.BackgroundImageLayout = ImageLayout.Zoom;
-            panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(textBoxTextColor);
             panel1.Controls.Add(label18);
             panel1.Controls.Add(textBoxColorCode);
@@ -317,9 +326,10 @@
             panel1.Controls.Add(textBoxName);
             panel1.Controls.Add(textBoxSpec);
             panel1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            panel1.Location = new Point(99, 34);
+            panel1.Location = new Point(210, 40);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(481, 330);
+            panel1.Size = new Size(549, 388);
             panel1.TabIndex = 41;
             panel1.Paint += panel1_Paint_1;
             // 
@@ -327,31 +337,31 @@
             // 
             dataGridView1.BorderStyle = BorderStyle.Fixed3D;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(628, 34);
+            dataGridView1.Location = new Point(815, 40);
+            dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(501, 330);
+            dataGridView1.Size = new Size(573, 388);
             dataGridView1.TabIndex = 48;
             // 
             // panel5
             // 
             panel5.BackColor = Color.PaleGoldenrod;
-            panel5.BorderStyle = BorderStyle.Fixed3D;
             panel5.Controls.Add(textBoxLVLID);
             panel5.Controls.Add(label14);
             panel5.Controls.Add(textBoxLVL);
             panel5.Controls.Add(label13);
             panel5.Controls.Add(label12);
-            panel5.Location = new Point(99, 397);
+            panel5.Location = new Point(210, 467);
+            panel5.Margin = new Padding(3, 4, 3, 4);
             panel5.Name = "panel5";
-            panel5.Size = new Size(481, 156);
+            panel5.Size = new Size(549, 183);
             panel5.TabIndex = 45;
             panel5.Paint += panel5_Paint;
             // 
             // panel6
             // 
             panel6.BackColor = Color.PaleGoldenrod;
-            panel6.BorderStyle = BorderStyle.Fixed3D;
             panel6.Controls.Add(textBoxAreaID);
             panel6.Controls.Add(label6);
             panel6.Controls.Add(label15);
@@ -360,18 +370,20 @@
             panel6.Controls.Add(label5);
             panel6.Controls.Add(TextBoxDept);
             panel6.Controls.Add(textBoxTime);
-            panel6.Location = new Point(99, 584);
+            panel6.Location = new Point(210, 670);
+            panel6.Margin = new Padding(3, 4, 3, 4);
             panel6.Name = "panel6";
-            panel6.Size = new Size(743, 169);
+            panel6.Size = new Size(849, 198);
             panel6.TabIndex = 47;
             panel6.Paint += panel6_Paint;
             // 
             // textBoxAreaID
             // 
             textBoxAreaID.BackColor = SystemColors.Window;
-            textBoxAreaID.Location = new Point(110, 39);
+            textBoxAreaID.Location = new Point(126, 46);
+            textBoxAreaID.Margin = new Padding(3, 4, 3, 4);
             textBoxAreaID.Name = "textBoxAreaID";
-            textBoxAreaID.Size = new Size(209, 25);
+            textBoxAreaID.Size = new Size(238, 27);
             textBoxAreaID.TabIndex = 38;
             // 
             // label6
@@ -380,19 +392,20 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial Black", 12.25F, FontStyle.Bold);
             label6.ForeColor = Color.Black;
-            label6.Location = new Point(167, 9);
+            label6.Location = new Point(191, 11);
             label6.Name = "label6";
-            label6.Size = new Size(73, 24);
+            label6.Size = new Size(90, 30);
             label6.TabIndex = 37;
             label6.Text = "AreaID";
             // 
             // dataGridView2
             // 
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(628, 397);
+            dataGridView2.Location = new Point(815, 467);
+            dataGridView2.Margin = new Padding(3, 4, 3, 4);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(500, 156);
+            dataGridView2.Size = new Size(571, 184);
             dataGridView2.TabIndex = 49;
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             // 
@@ -401,9 +414,10 @@
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(6, 34);
+            pictureBox1.Location = new Point(7, 40);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(87, 52);
+            pictureBox1.Size = new Size(99, 61);
             pictureBox1.TabIndex = 16;
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
@@ -411,11 +425,12 @@
             // button3
             // 
             button3.BackColor = Color.DarkOrange;
-            button3.Font = new Font("Franklin Gothic Book", 12F, FontStyle.Bold);
+            button3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             button3.ForeColor = SystemColors.ButtonFace;
-            button3.Location = new Point(922, 705);
+            button3.Location = new Point(1149, 799);
+            button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
-            button3.Size = new Size(145, 46);
+            button3.Size = new Size(166, 54);
             button3.TabIndex = 17;
             button3.Text = "DELETE";
             button3.UseVisualStyleBackColor = false;
@@ -424,11 +439,12 @@
             // button4
             // 
             button4.BackColor = Color.DarkOrange;
-            button4.Font = new Font("Franklin Gothic Book", 12F, FontStyle.Bold);
+            button4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             button4.ForeColor = SystemColors.ButtonFace;
-            button4.Location = new Point(922, 653);
+            button4.Location = new Point(1149, 738);
+            button4.Margin = new Padding(3, 4, 3, 4);
             button4.Name = "button4";
-            button4.Size = new Size(145, 46);
+            button4.Size = new Size(166, 54);
             button4.TabIndex = 21;
             button4.Text = "UPDATE";
             button4.UseVisualStyleBackColor = false;
@@ -437,11 +453,12 @@
             // button1
             // 
             button1.BackColor = Color.DarkOrange;
-            button1.Font = new Font("Franklin Gothic Book", 12F, FontStyle.Bold);
+            button1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             button1.ForeColor = SystemColors.ButtonFace;
-            button1.Location = new Point(922, 595);
+            button1.Location = new Point(1149, 670);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(145, 46);
+            button1.Size = new Size(166, 54);
             button1.TabIndex = 15;
             button1.Text = "ADD";
             button1.UseVisualStyleBackColor = false;
@@ -449,13 +466,12 @@
             // 
             // DataGenerator
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.FromArgb(255, 128, 0);
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            BackgroundImageLayout = ImageLayout.Center;
-            ClientSize = new Size(1366, 776);
+            ClientSize = new Size(1566, 881);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button1);
@@ -466,9 +482,11 @@
             Controls.Add(panel5);
             Controls.Add(panel1);
             DoubleBuffered = true;
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "DataGenerator";
-            Text = "q";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Data Generator";
             Load += Data_Generator_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

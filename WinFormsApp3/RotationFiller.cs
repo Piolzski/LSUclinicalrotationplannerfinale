@@ -467,13 +467,30 @@ namespace WinFormsApp3
                 // Check if the file exists before attempting to delete it
                 if (File.Exists(filePath))
                 {
-                    // Delete the file
-                    File.Delete(filePath);
-                    MessageBox.Show("The Excel file has been successfully deleted.");
+                    // Show a confirmation dialog to the user
+                    DialogResult result = MessageBox.Show(
+                        "Are you sure you want to delete the Excel file?",
+                        "Delete Confirmation",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    // Proceed only if the user clicks "Yes"
+                    if (result == DialogResult.Yes)
+                    {
+                        // Delete the file
+                        File.Delete(filePath);
+                        MessageBox.Show("The Excel file has been successfully deleted.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("The file does not exist.");
+                    MessageBox.Show(
+                        "The Excel file does not exist at the specified location. Please verify the file path and try again.",
+                        "Error: File Not Found",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error // Display an error icon in the message box
+                    );
                 }
             }
             catch (Exception ex)
@@ -502,7 +519,12 @@ namespace WinFormsApp3
                 }
                 else
                 {
-                    MessageBox.Show("The Excel file does not exist at the specified location.");
+                    MessageBox.Show(
+                        "The Excel file does not exist at the specified location. Please verify the file path and try again.",
+                        "Error: File Not Found",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error // Display an error icon in the message box
+                    );
                 }
             }
             catch (Exception ex)
@@ -1565,17 +1587,46 @@ namespace WinFormsApp3
 
         private void button9_Click(object sender, EventArgs e)
         {
-            // Hide the current form (if needed)
-            this.Hide();
+            // Path for the existing Excel file
+            string filePath = Path.Combine(@"C:\excellsheet\RotationSchedule.xlsx");
 
-            // Instantiate the ExcelPreview form
-            ExcelPreview excelPreviewForm = new ExcelPreview();
+            try
+            {
+                // Check if the file exists
+                if (!File.Exists(filePath))
+                {
+                    // Show an error message if the file does not exist
+                    MessageBox.Show(
+                        "The Excel file does not exist. Please verify the file path or create the file before proceeding.",
+                        "File Not Found",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                    return; // Exit the method to prevent further execution
+                }
 
-            // Show the ExcelPreview form
-            excelPreviewForm.Show();
+                // Hide the current form (if needed)
+                this.Hide();
 
-            // Optionally, handle the FormClosed event to close the current form when ExcelPreview is closed
-            excelPreviewForm.FormClosed += (s, args) => this.Close();
+                // Instantiate the ExcelPreview form and pass the file path if necessary
+                ExcelPreview excelPreviewForm = new ExcelPreview();
+
+                // Show the ExcelPreview form
+                excelPreviewForm.Show();
+
+                // Optionally, handle the FormClosed event to close the current form when ExcelPreview is closed
+                excelPreviewForm.FormClosed += (s, args) => this.Close();
+            }
+            catch (Exception ex)
+            {
+                // Display any errors that occur
+                MessageBox.Show(
+                    $"An unexpected error occurred while trying to open the Excel Preview: {ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
 
         }
         // to be assessed soon 
