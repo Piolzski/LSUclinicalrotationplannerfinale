@@ -838,47 +838,66 @@ namespace WinFormsApp3
                         }
                     }
 
-                    // Function to get the next available group for assignment
-                    int GetNextAvailableGroup(List<int> groupsPool, HashSet<int> localUsedGroups, HashSet<int> globalUsedGroups, int yearLevel)
+                    int GetNextAvailableGroup(
+                    List<int> groupsPool,
+                    HashSet<int> localUsedGroups,
+                    HashSet<int> globalUsedGroups,
+                    int yearLevel)
                     {
-                        // Prioritize groups not yet used in the current year level
-                        var unusedInYearLevel = groupsPool.Where(group => !yearLevelUsedGroups[yearLevel].Contains(group)).ToList();
+                        // Use a single instance of Random for consistent and thread-safe randomization
+                        Random random = new Random();
 
-                        if (unusedInYearLevel.Any())
+                        // Helper function to select a random group from a given collection
+                        int SelectRandomGroup(IEnumerable<int> groupCollection)
                         {
-                            // Randomly pick from the unused groups within the year level
-                            return unusedInYearLevel[new Random().Next(unusedInYearLevel.Count)];
+                            var groupList = groupCollection.ToList();
+                            if (groupList.Count == 0)
+                            {
+                                throw new InvalidOperationException("No valid groups available for random selection.");
+                            }
+                            return groupList[random.Next(groupList.Count)];
                         }
 
-                        // Prioritize groups not yet assigned globally
-                        var unusedGlobally = groupsPool.Where(group => !globalUsedGroups.Contains(group)).ToList();
-
-                        if (unusedGlobally.Any())
+                        // Prioritization rules
+                        var priorityChecks = new List<Func<IEnumerable<int>>>
                         {
-                            // Randomly pick from the unused globally groups
-                            return unusedGlobally[new Random().Next(unusedGlobally.Count)];
+                            // Step 1: Groups not used in the current year level
+                            () => groupsPool.Where(group => !yearLevelUsedGroups[yearLevel].Contains(group)),
+
+                            // Step 2: Groups not assigned globally
+                            () => groupsPool.Where(group => !globalUsedGroups.Contains(group)),
+
+                            // Step 3: Groups not assigned locally
+                            () => groupsPool.Where(group => !localUsedGroups.Contains(group)),
+
+                            // Step 4: Fallback to all groups in the pool
+                            () => groupsPool
+                        };
+
+                        // Iterate through priority rules
+                        foreach (var getValidGroups in priorityChecks)
+                        {
+                            var validGroups = getValidGroups().ToList();
+                            if (validGroups.Any())
+                            {
+                                // Optionally log which rule matched
+                                Console.WriteLine($"Selecting group based on rule: {priorityChecks.IndexOf(getValidGroups) + 1}");
+                                return SelectRandomGroup(validGroups);
+                            }
                         }
 
-                        // If all groups are used globally, prioritize groups not used locally
-                        var unusedLocally = groupsPool.Where(group => !localUsedGroups.Contains(group)).ToList();
-
-                        if (unusedLocally.Any())
-                        {
-                            return unusedLocally[new Random().Next(unusedLocally.Count)];
-                        }
-
-                        // If all groups are used both locally and globally, pick any group from the pool
-                        return groupsPool[new Random().Next(groupsPool.Count)];
+                        // If no valid group is found (this should never happen if groupsPool has valid entries)
+                        throw new InvalidOperationException("No available groups for assignment.");
                     }
 
-                    // Find the first available week that's not excluded
+                    // Ensure the starting week respects excluded weeks
                     int startingWeek = lastWeekForCI + 1;
                     while (excludedWeeks.Contains(startingWeek))
                     {
-                        startingWeek++; // Keep incrementing until we find a non-excluded week
+                        startingWeek++; // Increment until a non-excluded week is found
                     }
 
-                    // Insert the rotations if a valid number of rotations is provided
+                    // Insert rotations while ensuring proper group utilization
                     if (isRotationsValid)
                     {
                         foreach (var timeshift in selectedTimeshifts)
@@ -977,6 +996,7 @@ namespace WinFormsApp3
                             }
                         }
                     }
+
 
                     // Ensure 16-hour shift groups follow the same enhancements
                     if (is16HourShiftValid)
