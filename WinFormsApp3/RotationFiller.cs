@@ -249,19 +249,27 @@ namespace WinFormsApp3
                 var worksheet = workbook.Worksheets.FirstOrDefault(ws => ws.Name == "Rotation Schedule")
                                 ?? workbook.Worksheets.Add("Rotation Schedule");
 
+
+
+
+
                 try
                 {
-                    // Retrieve number of rotations from TextBox (optional)
-                    int numberOfRotations = 1; // Default to 1 if not provided
-                    if (!string.IsNullOrWhiteSpace(txtNumberOfWeeks.Text) && int.TryParse(txtNumberOfWeeks.Text, out int parsedRotations))
+                    // Validate that the number of weeks is provided and valid
+                    if (string.IsNullOrWhiteSpace(txtNumberOfWeeks.Text) || !int.TryParse(txtNumberOfWeeks.Text, out int numberOfWeeks) || numberOfWeeks <= 0)
                     {
-                        numberOfRotations = parsedRotations;
+                        MessageBox.Show("Error: Please enter a valid number of weeks before deploying the rotation sheet.",
+                                        "Missing or Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop deployment
                     }
 
-                    // Retrieve selected shift times from TimeShiftList ListBox (optional)
+                    // Retrieve number of rotations from TextBox
+                    int numberOfRotations = numberOfWeeks; // Use the validated number of weeks as the number of rotations
+
+                    // Retrieve selected shift times from TimeShiftList ListBox
                     var selectedShifts = lstTimeShifts.SelectedItems.Cast<string>().ToArray();
 
-                    // Retrieve year levels from ListBoxYearLevels (optional)
+                    // Retrieve year levels from ListBoxYearLevels
                     var yearLevels = lstYearLevels.SelectedItems.Cast<string>().Select(s => s.Trim()).ToArray();
 
                     // Validate that year levels and timeshifts are selected
@@ -590,8 +598,15 @@ namespace WinFormsApp3
 
                 try
                 {
+
                     // Define a structure to track each Clinical Instructor's information
                     var clinicalInstructorsInfo = new Dictionary<string, (XLColor Color, int LastWeek)>();
+
+                    // Global tracking of areas already assigned to groups
+                    var assignedAreasPerGroup = new Dictionary<int, HashSet<string>>();
+
+                    var globalGroupAreaAssignments = new Dictionary<int, HashSet<string>>(); // Tracks assigned areas per group
+
 
                     // Retrieve the selected Clinical Instructor
                     string selectedCI = lstClinicalInstructors.SelectedItem?.ToString()?.Trim() ?? "Unknown";
@@ -626,17 +641,17 @@ namespace WinFormsApp3
 
                     // Define starting rows and map year levels to integer values
                     Dictionary<string, (int StartRow, int YearInt)> yearLevelStartRows = new Dictionary<string, (int, int)>(StringComparer.OrdinalIgnoreCase) {
-                        { "2nd year", (6, 2) },  // Start row and integer mapping for 2nd Year
-                        { "3rd year", (22, 3) },  // Start row and integer mapping for 3rd Year
-                        { "4th year", (38, 4) }   // Start row and integer mapping for 4th Year
-                    };
+            { "2nd year", (6, 2) },  // Start row and integer mapping for 2nd Year
+            { "3rd year", (22, 3) },  // Start row and integer mapping for 3rd Year
+            { "4th year", (38, 4) }   // Start row and integer mapping for 4th Year
+        };
 
                     // Define the base columns for each timeshift
                     Dictionary<string, int> baseTimeshiftColumns = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase) {
-                        { "7am to 3pm", 2 },   // Base column for 7am to 3pm
-                        { "3pm to 11pm", 3 },  // Base column for 3pm to 11pm
-                        { "11pm to 7am", 4 }   // Base column for 11pm to 7am
-                    };
+            { "7am to 3pm", 2 },   // Base column for 7am to 3pm
+            { "3pm to 11pm", 3 },  // Base column for 3pm to 11pm
+            { "11pm to 7am", 4 }   // Base column for 11pm to 7am
+        };
 
                     // Retrieve the selected year levels
                     var selectedYearLevels = lstYearLevels.SelectedItems.Cast<string>().Select(s => s.Trim().ToLowerInvariant()).ToArray();
@@ -707,11 +722,30 @@ namespace WinFormsApp3
                                     {
                                         int targetRow = startingRowForYearLevel + groupNumber - 1;
 
+                                        // Check if the area is already assigned to the group globally
+                                        if (globalGroupAreaAssignments.ContainsKey(groupNumber) &&
+                                            globalGroupAreaAssignments[groupNumber].Contains(selectedAreas[0]))
+                                        {
+                                            continue; // Skip if the area is already assigned to the group for any C.I.
+                                        }
+
                                         // Check if the current cell matches the C.I.'s font color and is white background
                                         if ((worksheet.Cell(targetRow, targetColumn).Style.Fill.BackgroundColor == ciBackgroundColor ||
                                              (ciBackgroundColor == XLColor.White && worksheet.Cell(targetRow, targetColumn).Style.Fill.BackgroundColor == XLColor.NoColor)) &&
                                             worksheet.Cell(targetRow, targetColumn).Style.Font.FontColor == ciFontColor)
                                         {
+                                            // Mark the area as assigned to the group
+                                            if (!assignedAreasPerGroup.ContainsKey(groupNumber))
+                                                assignedAreasPerGroup[groupNumber] = new HashSet<string>();
+
+                                            assignedAreasPerGroup[groupNumber].Add(selectedAreas[0]);
+
+                                            // Also track this globally
+                                            if (!globalGroupAreaAssignments.ContainsKey(groupNumber))
+                                                globalGroupAreaAssignments[groupNumber] = new HashSet<string>();
+
+                                            globalGroupAreaAssignments[groupNumber].Add(selectedAreas[0]);
+
                                             isWeekFilledForCI = true;
                                             break;
                                         }
@@ -725,7 +759,6 @@ namespace WinFormsApp3
                                         // Dynamically calculate the maximum number of weeks based on the rotation sheet
                                         int calculatedMaxWeeks = (worksheet.LastColumnUsed().ColumnNumber() - baseTimeshiftColumns.First().Value) / 3 + 1;
 
-
                                         // Check if lastWeek exceeds the dynamic maxWeeks
                                         if (lastWeek > maxWeeks)
                                         {
@@ -738,6 +771,11 @@ namespace WinFormsApp3
 
                         return lastWeek;
                     }
+
+
+
+
+
 
 
                     // Use the modified function to get the last week for the selected C.I. based on both background and font colors
@@ -1676,6 +1714,9 @@ namespace WinFormsApp3
 
         }
 
-      
+        private void txtNumberOfWeeks_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

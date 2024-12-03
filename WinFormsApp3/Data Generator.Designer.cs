@@ -352,7 +352,7 @@
             panel5.Controls.Add(textBoxLVL);
             panel5.Controls.Add(label13);
             panel5.Controls.Add(label12);
-            panel5.Location = new Point(210, 467);
+            panel5.Location = new Point(210, 455);
             panel5.Margin = new Padding(3, 4, 3, 4);
             panel5.Name = "panel5";
             panel5.Size = new Size(549, 183);
@@ -401,7 +401,7 @@
             // dataGridView2
             // 
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(815, 467);
+            dataGridView2.Location = new Point(815, 455);
             dataGridView2.Margin = new Padding(3, 4, 3, 4);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;

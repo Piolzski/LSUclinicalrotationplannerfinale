@@ -216,6 +216,7 @@
             txtNumberOfWeeks.Name = "txtNumberOfWeeks";
             txtNumberOfWeeks.Size = new Size(217, 25);
             txtNumberOfWeeks.TabIndex = 15;
+            txtNumberOfWeeks.TextChanged += txtNumberOfWeeks_TextChanged;
             // 
             // label8
             // 
