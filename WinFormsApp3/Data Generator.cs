@@ -174,7 +174,14 @@ namespace WinFormsApp3
                         }
                     }
 
+                    // After the insert is complete, refresh the DataGridView
+                    LoadInstructors();
+                    LoadDepartments();
+
                     MessageBox.Show("Data Inserted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
 
                     // Clear text boxes
                     textBoxName.Clear();
@@ -341,6 +348,9 @@ namespace WinFormsApp3
                         }
                     }
 
+                    // After the insert is complete, refresh the DataGridView
+                    LoadInstructors();
+                    LoadDepartments();
 
                     if (!dataFoundToDelete)
                     {
@@ -482,6 +492,9 @@ namespace WinFormsApp3
                         }
                     }
 
+                    // After the insert is complete, refresh the DataGridView
+                    LoadInstructors();
+                    LoadDepartments();
 
 
                     MessageBox.Show("Data updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -541,7 +554,7 @@ namespace WinFormsApp3
 
         private void LoadInstructors()
         {
-            string connectionString = @"Data Source=clinicalrotationplanner.db;Version=3;"; // SQLite connection string
+            string connectionString = @"Data Source=clinicalrotationplanner.db;Version=3;";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
@@ -551,7 +564,7 @@ namespace WinFormsApp3
                 {
                     using (SQLiteDataReader reader = cmd.ExecuteReader())
                     {
-                        dataGridView1.Rows.Clear(); // Clear any existing rows in the DataGridView
+                        dataGridView1.Rows.Clear(); // Clear any existing rows
                         while (reader.Read())
                         {
                             // Add a new row to DataGridView with data from the reader
@@ -567,6 +580,7 @@ namespace WinFormsApp3
                 }
             }
         }
+
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

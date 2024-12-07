@@ -431,7 +431,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(250, 881);
+            panel1.Size = new Size(253, 881);
             panel1.TabIndex = 39;
             panel1.Paint += panel1_Paint;
             // 
