@@ -19,6 +19,8 @@ namespace WinFormsApp3
         public RotationFiller()
         {
             InitializeComponent();
+            this.KeyPreview = true; // Ensure the form captures key presses
+            this.KeyDown += new KeyEventHandler(RotationFiller_KeyDown); // Attach the KeyDown event
 
         }
 
@@ -556,6 +558,18 @@ namespace WinFormsApp3
             }
 
         }
+
+        // This event handles the F1 key press to trigger button4_Click
+#nullable disable
+        private void RotationFiller_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1) // Check if F1 is  pressed
+            {
+                button4_Click(sender, e); // Trigger the button click logic
+            }
+        }
+#nullable enable
+
 
         private void button4_Click(object sender, EventArgs e)
         {
