@@ -624,6 +624,8 @@ namespace WinFormsApp3
                     // Retrieve the C.I.'s colors from the database (background and text color)
                     var (backgroundColor, fontColor) = GetInstructorColorsFromDatabase(selectedCI);
 
+
+
                     // Retrieve the number of groups from the textboxes
                     int groupsIn2ndYear = int.TryParse(groupbox2.Text, out int g2) ? g2 : 0;
                     int groupsIn3rdYear = int.TryParse(groupbox3.Text, out int g3) ? g3 : 0;
@@ -632,8 +634,9 @@ namespace WinFormsApp3
                     // Combine all groups into a single list
                     List<int> allGroups = new List<int>();
                     for (int i = 1; i <= groupsIn2ndYear; i++) allGroups.Add(i); // Add groups from 2nd year
-                    for (int i = 1; i <= groupsIn3rdYear; i++) allGroups.Add(i + 100); // Add groups from 3rd year (100 series)
-                    for (int i = 1; i <= groupsIn4thYear; i++) allGroups.Add(i + 200); // Add groups from 4th year (200 series)
+                    for (int i = 1; i <= groupsIn3rdYear; i++) allGroups.Add(i + 100); 
+                    for (int i = 1; i <= groupsIn4thYear; i++) allGroups.Add(i + 200); 
+
 
                     // Retrieve the selected areas from listbox1
                     var selectedAreas = lstDepartments.SelectedItems.Cast<string>().Select(s => s.Trim()).ToArray();
@@ -834,11 +837,15 @@ namespace WinFormsApp3
                         }
                     }
 
+                    Dictionary<int, Dictionary<int, string>> weeklyGroupAssignments = new Dictionary<int, Dictionary<int, string>>();
+
                     int GetNextAvailableGroup(
-                     List<int> groupsPool,
-                     HashSet<int> localUsedGroups,
-                     HashSet<int> globalUsedGroups,
-                     int yearLevel)
+                        List<int> groupsPool,
+                        HashSet<int> localUsedGroups,
+                        HashSet<int> globalUsedGroups,
+                        int yearLevel,
+                        int currentWeek, // Add the current week as a parameter
+                        string area) // Add the area as a parameter
                     {
                         Dictionary<int, int> groupUsageCount = new Dictionary<int, int>();
                         Queue<int> recentlyAssignedGroups = new Queue<int>();
@@ -888,6 +895,22 @@ namespace WinFormsApp3
                             return unassignedGroups;
                         }
 
+                        bool IsAreaAlreadyAssignedToGroup(int week, int group, string area)
+                        {
+                            return weeklyGroupAssignments.TryGetValue(week, out var groupAssignments) &&
+                                   groupAssignments.TryGetValue(group, out var assignedArea) &&
+                                   assignedArea == area;
+                        }
+
+                        void AssignAreaToGroup(int week, int group, string area)
+                        {
+                            if (!weeklyGroupAssignments.ContainsKey(week))
+                            {
+                                weeklyGroupAssignments[week] = new Dictionary<int, string>();
+                            }
+                            weeklyGroupAssignments[week][group] = area;
+                        }
+
                         var priorityChecks = new List<Func<List<int>>>
                         {
                             () => EnsureGroupsUtilized(groupsPool, yearLevelUsedGroups[yearLevel]),
@@ -898,12 +921,13 @@ namespace WinFormsApp3
 
                         foreach (var getValidGroups in priorityChecks)
                         {
-                            var validGroups = getValidGroups();
+                            var validGroups = getValidGroups().Where(group => !IsAreaAlreadyAssignedToGroup(currentWeek, group, area)).ToList();
                             if (validGroups.Any())
                             {
                                 var selectedGroup = GetWeightedRandomGroup(validGroups);
                                 if (!IsGroupRecentlyAssigned(selectedGroup))
                                 {
+                                    AssignAreaToGroup(currentWeek, selectedGroup, area);
                                     AddToRecentlyAssignedGroups(selectedGroup);
                                     return selectedGroup;
                                 }
@@ -912,6 +936,7 @@ namespace WinFormsApp3
 
                         throw new InvalidOperationException("No available groups for assignment.");
                     }
+
 
 
 
@@ -976,10 +1001,15 @@ namespace WinFormsApp3
 
                                     int startingRowForYearLevel = yearLevelStartRows[yearLevel].StartRow;
 
-                                    int groupToAssign = GetNextAvailableGroup(groupsForRotationCycle,
-                                                                              globalGroupAssignments[(yearLevelInt, timeshift, week)],
-                                                                              globalUsedGroups,
-                                                                              yearLevelInt);
+                                    int groupToAssign = GetNextAvailableGroup(
+                                         groupsForRotationCycle,
+                                         globalGroupAssignments.GetValueOrDefault((yearLevelInt, timeshift, week), new HashSet<int>()), // Handle missing key with default
+                                         globalUsedGroups,
+                                         yearLevelInt,
+                                         week, // Pass current week
+                                         selectedAreas[random.Next(selectedAreas.Length)] // Randomly select an area to assign
+                                     );
+
 
                                     groupsForRotationCycle.Remove(groupToAssign);
 
@@ -1043,11 +1073,13 @@ namespace WinFormsApp3
                             int startingRowForYearLevel = yearLevelStartRows[yearLevel].StartRow;
 
                             int groupToAssign = GetNextAvailableGroup(
-                                allGroups,
-                                globalGroupAssignments[(yearLevelInt, "16hr_shift", weekFor16HourShift)],
-                                globalUsedGroups,
-                                yearLevelInt
-                            );
+                               allGroups,
+                               globalGroupAssignments.GetValueOrDefault((yearLevelInt, "16hr_shift", weekFor16HourShift), new HashSet<int>()),
+                               globalUsedGroups,
+                               yearLevelInt,
+                               weekFor16HourShift, // Pass the current week for the 16-hour shift
+                               selectedAreas[random.Next(selectedAreas.Length)] // Randomly select an area
+                           );
 
                             if (globalGroupAssignments[(yearLevelInt, "16hr_shift", weekFor16HourShift)].Contains(groupToAssign))
                             {
