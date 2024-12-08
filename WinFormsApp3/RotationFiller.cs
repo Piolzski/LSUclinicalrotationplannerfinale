@@ -25,6 +25,7 @@ namespace WinFormsApp3
         // Declare the static Random instance at the class level
         private static readonly Random _random = new Random();
 
+
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -583,6 +584,11 @@ namespace WinFormsApp3
 
         }
 
+        // Global tracker for assigned rotations
+        private Dictionary<(int yearLevel, string timeshift, int week), int> globalRotationTracker
+            = new Dictionary<(int yearLevel, string timeshift, int week), int>();
+
+
         private void button7_Click(object sender, EventArgs e)
         {
             // Path for saving the Excel file
@@ -971,6 +977,8 @@ namespace WinFormsApp3
                             int currentRotation = 0;
                             int week = startingWeek;
 
+
+
                             while (currentRotation < allowedRotations)
                             {
                                 if (excludedWeeks.Contains(week) || assignedWeeks.Values.Any(weeks => weeks.Contains(week)))
@@ -1010,7 +1018,6 @@ namespace WinFormsApp3
                                          selectedAreas[random.Next(selectedAreas.Length)] // Randomly select an area to assign
                                      );
 
-
                                     groupsForRotationCycle.Remove(groupToAssign);
 
                                     int actualGroupNumber = groupToAssign > 200 ? groupToAssign - 200 :
@@ -1032,6 +1039,19 @@ namespace WinFormsApp3
                                         globalGroupAssignments[(yearLevelInt, timeshift, week)].Add(groupToAssign);
                                         globalUsedGroups.Add(groupToAssign);
                                         yearLevelUsedGroups[yearLevelInt].Add(groupToAssign); // Track usage in the current year level
+
+                                        // Enhance global rotation tracking
+                                        if (!globalRotationTracker.ContainsKey((yearLevelInt, timeshift, week)))
+                                        {
+                                            globalRotationTracker[(yearLevelInt, timeshift, week)] = currentRotation;
+                                        }
+                                        else
+                                        {
+                                            globalRotationTracker[(yearLevelInt, timeshift, week)] = Math.Max(
+                                                globalRotationTracker[(yearLevelInt, timeshift, week)],
+                                                currentRotation
+                                            );
+                                        }
 
                                         currentRotation++;
                                         rotationAssigned = true;

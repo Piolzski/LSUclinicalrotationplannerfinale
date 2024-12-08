@@ -159,6 +159,8 @@
             // 
             // dtpStartDate
             // 
+            dtpStartDate.CalendarFont = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dtpStartDate.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpStartDate.Location = new Point(37, 191);
             dtpStartDate.Margin = new Padding(3, 4, 3, 4);
             dtpStartDate.Name = "dtpStartDate";
@@ -167,6 +169,8 @@
             // 
             // dtpEndDate
             // 
+            dtpEndDate.CalendarFont = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dtpEndDate.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpEndDate.Location = new Point(37, 274);
             dtpEndDate.Margin = new Padding(3, 4, 3, 4);
             dtpEndDate.Name = "dtpEndDate";
