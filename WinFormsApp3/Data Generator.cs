@@ -300,14 +300,14 @@ namespace WinFormsApp3
 
                     if (!string.IsNullOrWhiteSpace(textBoxAreaID.Text))
                     {
-                        string checkAreaQuery = "SELECT COUNT(*) FROM hospitaldepartments WHERE DepartmentID = @AreaID";
+                        string checkAreaQuery = "SELECT COUNT(*) FROM hospitaldepartments WHERE AreaID = @AreaID";
                         using (SQLiteCommand checkCommand = new SQLiteCommand(checkAreaQuery, connection))
                         {
                             checkCommand.Parameters.AddWithValue("@AreaID", textBoxAreaID.Text);
                             int count = Convert.ToInt32(checkCommand.ExecuteScalar());
                             if (count > 0)
                             {
-                                string areaDeleteQuery = "DELETE FROM hospitaldepartments WHERE DepartmentID = @AreaID";
+                                string areaDeleteQuery = "DELETE FROM hospitaldepartments WHERE AreaID = @AreaID";
                                 using (SQLiteCommand areaCommand = new SQLiteCommand(areaDeleteQuery, connection))
                                 {
                                     areaCommand.Parameters.AddWithValue("@AreaID", textBoxAreaID.Text);
