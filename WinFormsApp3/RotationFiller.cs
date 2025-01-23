@@ -40,6 +40,8 @@ namespace WinFormsApp3
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+
             LoadClinicalInstructors();
             LoadYearLevels();
             LoadDepartments();
@@ -247,15 +249,37 @@ namespace WinFormsApp3
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+
+            // Determine the file name based on the selected semester
+            string fileName = "";
+            if (rbtnFirstSem.Checked)
+            {
+                fileName = "RotationSchedule_First_Semester.xlsx";
+            }
+            else if (rbtnSecondSem.Checked)
+            {
+                fileName = "RotationSchedule_Second_Semester.xlsx";
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Please select a semester before proceeding.",
+                    "Error: No Semester Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return; // Exit if no semester is selected
+            }
+
             // Path for saving the Excel file
-            string filePath = Path.Combine(@"C:\excellsheet", "RotationSchedule.xlsx");
+            string filePath = Path.Combine(@"C:\excellsheet", fileName);
 
             using (var workbook = File.Exists(filePath) ? new XLWorkbook(filePath) : new XLWorkbook()) // Open existing workbook or create new one
             {
                 // Check if the worksheet exists, otherwise add a new one
                 var worksheet = workbook.Worksheets.FirstOrDefault(ws => ws.Name == "Rotation Schedule")
                                 ?? workbook.Worksheets.Add("Rotation Schedule");
-
 
 
 
@@ -484,53 +508,49 @@ namespace WinFormsApp3
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // Path for the existing Excel file
-            string filePath = Path.Combine(@"C:\excellsheet\RotationSchedule.xlsx");
-
-            try
-            {
-                // Check if the file exists before attempting to delete it
-                if (File.Exists(filePath))
-                {
-                    // Show a confirmation dialog to the user
-                    DialogResult result = MessageBox.Show(
-                        "Are you sure you want to delete the Excel file?",
-                        "Delete Confirmation",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Warning
-                    );
-
-                    // Proceed only if the user clicks "Yes"
-                    if (result == DialogResult.Yes)
-                    {
-                        // Delete the file
-                        File.Delete(filePath);
-                        MessageBox.Show("The Excel file has been successfully deleted.");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show(
-                        "The Excel file does not exist at the specified location. Please verify the file path and try again.",
-                        "Error: File Not Found",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error // Display an error icon in the message box
-                    );
-                }
-            }
-            catch (Exception ex)
-            {
-                // Display any errors that occur during the file deletion process
-                MessageBox.Show($"An error occurred while trying to delete the file: {ex.Message}");
-            }
+           // no code here this was supposedly for the delete
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             try
             {
+                // Determine the file name based on the selected semester
+                string fileName = "";
+                if (rbtnFirstSem.Checked)
+                {
+                    fileName = "RotationSchedule_First_Semester.xlsx";
+                }
+                else if (rbtnSecondSem.Checked)
+                {
+                    fileName = "RotationSchedule_Second_Semester.xlsx";
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "Please select a semester before proceeding.",
+                        "Error: No Semester Selected",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                    return; // Exit if no semester is selected
+                }
+
                 // Path for the existing Excel file
-                string filePath = @"C:\excellsheet\RotationSchedule.xlsx";
+                string folderPath = @"C:\excellsheet\"; // Define the folder path
+                string filePath = Path.Combine(folderPath, fileName); // Combine folder path and file name
+
+                // Check if the folder exists
+                if (!Directory.Exists(folderPath))
+                {
+                    MessageBox.Show(
+                        "The specified folder does not exist. Please verify the folder path and try again.",
+                        "Error: Folder Not Found",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                    return; // Exit if the folder does not exist
+                }
 
                 // Check if the file exists
                 if (File.Exists(filePath))
@@ -545,16 +565,21 @@ namespace WinFormsApp3
                 else
                 {
                     MessageBox.Show(
-                        "The Excel file does not exist at the specified location. Please verify the file path and try again.",
+                        $"The file '{fileName}' does not exist in the folder '{folderPath}'. Please verify the file path and try again.",
                         "Error: File Not Found",
                         MessageBoxButtons.OK,
-                        MessageBoxIcon.Error // Display an error icon in the message box
+                        MessageBoxIcon.Error
                     );
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while trying to open the file: {ex.Message}");
+                MessageBox.Show(
+                    $"An error occurred while trying to open the file: {ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
 
         }
@@ -605,18 +630,42 @@ namespace WinFormsApp3
 
         private void button7_Click(object sender, EventArgs e)
         {
-            // Path for saving the Excel file
-            string filePath = Path.Combine(@"C:\excellsheet\", "RotationSchedule.xlsx");
+            // Determine the file name based on the selected semester
+            string fileName = "";
+            if (rbtnFirstSem.Checked)
+            {
+                fileName = "RotationSchedule_First_Semester.xlsx";
+            }
+            else if (rbtnSecondSem.Checked)
+            {
+                fileName = "RotationSchedule_Second_Semester.xlsx";
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Please select a semester before proceeding.",
+                    "Error: No Semester Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return; // Exit if no semester is selected
+            }
 
+            // Path for saving the Excel file
+            string filePath = Path.Combine(@"C:\excellsheet\", fileName);
+
+            // Check if the file exists
             if (!File.Exists(filePath))
             {
-                MessageBox.Show("Error: The file 'RotationSchedule.xlsx' does not exist. Deployment cannot proceed.",
+                MessageBox.Show($"Error: The file '{fileName}' does not exist. Deployment cannot proceed.",
                                 "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Exit if the file does not exist
             }
 
-            using (var workbook = File.Exists(filePath) ? new XLWorkbook(filePath) : new XLWorkbook()) // Open existing workbook or create new one
+            // Open existing workbook or create a new one
+            using (var workbook = new XLWorkbook(filePath))
             {
+                // Check if the worksheet exists, otherwise add a new one
                 var worksheet = workbook.Worksheets.FirstOrDefault(ws => ws.Name == "Rotation Schedule")
                                 ?? workbook.Worksheets.Add("Rotation Schedule");
 
@@ -654,8 +703,8 @@ namespace WinFormsApp3
                     // Combine all groups into a single list
                     List<int> allGroups = new List<int>();
                     for (int i = 1; i <= groupsIn2ndYear; i++) allGroups.Add(i); // Add groups from 2nd year
-                    for (int i = 1; i <= groupsIn3rdYear; i++) allGroups.Add(i + 100); 
-                    for (int i = 1; i <= groupsIn4thYear; i++) allGroups.Add(i + 200); 
+                    for (int i = 1; i <= groupsIn3rdYear; i++) allGroups.Add(i + 100);
+                    for (int i = 1; i <= groupsIn4thYear; i++) allGroups.Add(i + 200);
 
 
                     // Retrieve the selected areas from listbox1
@@ -1256,11 +1305,15 @@ namespace WinFormsApp3
 
                     // Save the workbook
                     workbook.SaveAs(filePath);
-                    MessageBox.Show($"Excel file updated successfully at {filePath}");
+                    // Provide a success message
+                    MessageBox.Show($"Excel file for '{(rbtnFirstSem.Checked ? "First Semester" : "Second Semester")}' updated successfully at {filePath}.",
+                                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"An error occurred: {ex.Message}");
+                    // Handle any errors that occur during saving
+                    MessageBox.Show($"An error occurred while saving the file: {ex.Message}",
+                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 // Clear text and selections after processing
@@ -1268,7 +1321,7 @@ namespace WinFormsApp3
                 lstYearLevels.ClearSelected();
                 lstDepartments.ClearSelected();
                 lstClinicalInstructors.ClearSelected();
-      
+
 
                 textBox1.Clear();
                 textBox16hrs.Clear();
@@ -1389,13 +1442,37 @@ namespace WinFormsApp3
 
         private void button6_Click(object sender, EventArgs e)
         {
-            // Path for saving the Excel file
-            string filePath = Path.Combine(@"C:\excellsheet\", "RotationSchedule.xlsx");
-
-            using (var workbook = File.Exists(filePath) ? new XLWorkbook(filePath) : new XLWorkbook()) // Open existing workbook or create new one
+            // Determine the file name based on the selected semester
+            string fileName = "";
+            if (rbtnFirstSem.Checked)
             {
+                fileName = "RotationSchedule_First_Semester.xlsx";
+            }
+            else if (rbtnSecondSem.Checked)
+            {
+                fileName = "RotationSchedule_Second_Semester.xlsx";
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Please select a semester before proceeding.",
+                    "Error: No Semester Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return; // Exit if no semester is selected
+            }
+
+            // Path for saving the Excel file
+            string filePath = Path.Combine(@"C:\excellsheet\", fileName);
+
+            // Open existing workbook or create a new one
+            using (var workbook = File.Exists(filePath) ? new XLWorkbook(filePath) : new XLWorkbook())
+            {
+                // Check if the worksheet exists, otherwise add a new one
                 var worksheet = workbook.Worksheets.FirstOrDefault(ws => ws.Name == "Rotation Schedule")
                                 ?? workbook.Worksheets.Add("Rotation Schedule");
+
 
                 try
                 {
@@ -1582,11 +1659,15 @@ namespace WinFormsApp3
 
                     // Save the updated Excel file
                     workbook.SaveAs(filePath);
-                    MessageBox.Show("Areas cleared successfully and rotations updated.");
+                    // Provide a success message
+                    MessageBox.Show($"Excel file for '{(rbtnFirstSem.Checked ? "First Semester" : "Second Semester")}' areas cleared successfully at {filePath}.",
+                                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"An error occurred: {ex.Message}");
+                    // Handle any errors that occur during saving
+                    MessageBox.Show($"An error occurred while saving the file: {ex.Message}",
+                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 // Clear selections and inputs after processing
@@ -1774,8 +1855,29 @@ namespace WinFormsApp3
 
         private void button9_Click(object sender, EventArgs e)
         {
+            // Determine the file name based on the selected semester
+            string fileName = "";
+            if (rbtnFirstSem.Checked)
+            {
+                fileName = "RotationSchedule_First_Semester.xlsx";
+            }
+            else if (rbtnSecondSem.Checked)
+            {
+                fileName = "RotationSchedule_Second_Semester.xlsx";
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Please select a semester before proceeding.",
+                    "Error: No Semester Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return; // Exit if no semester is selected
+            }
+
             // Path for the existing Excel file
-            string filePath = Path.Combine(@"C:\excellsheet\RotationSchedule.xlsx");
+            string filePath = Path.Combine(@"C:\excellsheet\", fileName);
 
             try
             {
@@ -1784,7 +1886,7 @@ namespace WinFormsApp3
                 {
                     // Show an error message if the file does not exist
                     MessageBox.Show(
-                        "The Excel file does not exist. Please verify the file path or create the file before proceeding.",
+                        $"The Excel file '{fileName}' does not exist. Please verify the file path or create the file before proceeding.",
                         "File Not Found",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error
@@ -1797,6 +1899,9 @@ namespace WinFormsApp3
 
                 // Instantiate the ExcelPreview form and pass the file path if necessary
                 ExcelPreview excelPreviewForm = new ExcelPreview();
+
+                // Optionally, pass the file path to the ExcelPreview form if required
+                // e.g., excelPreviewForm.FilePath = filePath;
 
                 // Show the ExcelPreview form
                 excelPreviewForm.Show();
@@ -1837,6 +1942,9 @@ namespace WinFormsApp3
 
         }
 
-       
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -73,7 +73,7 @@
             // TextBoxDept
             // 
             TextBoxDept.BackColor = SystemColors.Window;
-            TextBoxDept.Location = new Point(462, 46);
+            TextBoxDept.Location = new Point(286, 49);
             TextBoxDept.Margin = new Padding(3, 4, 3, 4);
             TextBoxDept.Name = "TextBoxDept";
             TextBoxDept.Size = new Size(238, 27);
@@ -82,7 +82,7 @@
             // textBoxTime
             // 
             textBoxTime.BackColor = SystemColors.Window;
-            textBoxTime.Location = new Point(126, 138);
+            textBoxTime.Location = new Point(20, 141);
             textBoxTime.Margin = new Padding(3, 4, 3, 4);
             textBoxTime.Name = "textBoxTime";
             textBoxTime.Size = new Size(238, 27);
@@ -91,7 +91,7 @@
             // textBoxSpec
             // 
             textBoxSpec.BackColor = SystemColors.Window;
-            textBoxSpec.Location = new Point(241, 209);
+            textBoxSpec.Location = new Point(243, 160);
             textBoxSpec.Margin = new Padding(3, 4, 3, 4);
             textBoxSpec.Name = "textBoxSpec";
             textBoxSpec.Size = new Size(246, 29);
@@ -100,7 +100,7 @@
             // textBoxName
             // 
             textBoxName.BackColor = SystemColors.Window;
-            textBoxName.Location = new Point(241, 155);
+            textBoxName.Location = new Point(243, 106);
             textBoxName.Margin = new Padding(3, 4, 3, 4);
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(246, 29);
@@ -112,7 +112,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial Black", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(126, 33);
+            label3.Location = new Point(126, 13);
             label3.Name = "label3";
             label3.Size = new Size(326, 33);
             label3.TabIndex = 2;
@@ -125,7 +125,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial Black", 12F, FontStyle.Bold);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(47, 209);
+            label2.Location = new Point(49, 160);
             label2.Name = "label2";
             label2.Size = new Size(148, 28);
             label2.TabIndex = 1;
@@ -138,7 +138,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Black", 12F, FontStyle.Bold);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(47, 155);
+            label1.Location = new Point(49, 106);
             label1.Name = "label1";
             label1.Size = new Size(82, 28);
             label1.TabIndex = 0;
@@ -151,7 +151,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial Black", 12.25F, FontStyle.Bold);
             label5.ForeColor = Color.Black;
-            label5.Location = new Point(162, 102);
+            label5.Location = new Point(56, 105);
             label5.Name = "label5";
             label5.Size = new Size(130, 30);
             label5.TabIndex = 25;
@@ -163,7 +163,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial Black", 12.25F, FontStyle.Bold);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(547, 11);
+            label4.Location = new Point(371, 14);
             label4.Name = "label4";
             label4.Size = new Size(66, 30);
             label4.TabIndex = 26;
@@ -176,7 +176,7 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Arial Black", 12F, FontStyle.Bold);
             label8.ForeColor = Color.Black;
-            label8.Location = new Point(47, 100);
+            label8.Location = new Point(49, 51);
             label8.Name = "label8";
             label8.Size = new Size(159, 28);
             label8.TabIndex = 27;
@@ -185,7 +185,7 @@
             // textBoxID
             // 
             textBoxID.BackColor = SystemColors.Window;
-            textBoxID.Location = new Point(241, 99);
+            textBoxID.Location = new Point(243, 50);
             textBoxID.Margin = new Padding(3, 4, 3, 4);
             textBoxID.Name = "textBoxID";
             textBoxID.Size = new Size(246, 29);
@@ -252,7 +252,7 @@
             label15.BackColor = Color.Transparent;
             label15.Font = new Font("Arial Black", 12.25F, FontStyle.Bold);
             label15.ForeColor = Color.Black;
-            label15.Location = new Point(490, 102);
+            label15.Location = new Point(314, 105);
             label15.Name = "label15";
             label15.Size = new Size(179, 30);
             label15.TabIndex = 36;
@@ -261,7 +261,7 @@
             // textBoxgrp
             // 
             textBoxgrp.BackColor = SystemColors.Window;
-            textBoxgrp.Location = new Point(462, 138);
+            textBoxgrp.Location = new Point(286, 141);
             textBoxgrp.Margin = new Padding(3, 4, 3, 4);
             textBoxgrp.Name = "textBoxgrp";
             textBoxgrp.Size = new Size(238, 27);
@@ -274,7 +274,7 @@
             label17.BackColor = Color.Transparent;
             label17.Font = new Font("Arial Black", 12F, FontStyle.Bold);
             label17.ForeColor = Color.Black;
-            label17.Location = new Point(47, 262);
+            label17.Location = new Point(49, 213);
             label17.Name = "label17";
             label17.Size = new Size(139, 28);
             label17.TabIndex = 37;
@@ -283,7 +283,7 @@
             // textBoxColorCode
             // 
             textBoxColorCode.BackColor = SystemColors.Window;
-            textBoxColorCode.Location = new Point(241, 261);
+            textBoxColorCode.Location = new Point(243, 212);
             textBoxColorCode.Margin = new Padding(3, 4, 3, 4);
             textBoxColorCode.Name = "textBoxColorCode";
             textBoxColorCode.Size = new Size(246, 29);
@@ -295,7 +295,7 @@
             label18.BackColor = Color.Transparent;
             label18.Font = new Font("Arial Black", 9.8F, FontStyle.Bold);
             label18.ForeColor = Color.Black;
-            label18.Location = new Point(21, 316);
+            label18.Location = new Point(23, 267);
             label18.Name = "label18";
             label18.Size = new Size(228, 24);
             label18.TabIndex = 39;
@@ -304,7 +304,7 @@
             // textBoxTextColor
             // 
             textBoxTextColor.BackColor = SystemColors.Window;
-            textBoxTextColor.Location = new Point(241, 313);
+            textBoxTextColor.Location = new Point(243, 264);
             textBoxTextColor.Margin = new Padding(3, 4, 3, 4);
             textBoxTextColor.Name = "textBoxTextColor";
             textBoxTextColor.Size = new Size(246, 29);
@@ -326,10 +326,10 @@
             panel1.Controls.Add(textBoxName);
             panel1.Controls.Add(textBoxSpec);
             panel1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            panel1.Location = new Point(210, 40);
+            panel1.Location = new Point(132, 13);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(549, 388);
+            panel1.Size = new Size(549, 312);
             panel1.TabIndex = 41;
             panel1.Paint += panel1_Paint_1;
             // 
@@ -337,11 +337,11 @@
             // 
             dataGridView1.BorderStyle = BorderStyle.Fixed3D;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(815, 40);
+            dataGridView1.Location = new Point(714, 13);
             dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(573, 388);
+            dataGridView1.Size = new Size(573, 312);
             dataGridView1.TabIndex = 48;
             // 
             // panel5
@@ -352,7 +352,7 @@
             panel5.Controls.Add(textBoxLVL);
             panel5.Controls.Add(label13);
             panel5.Controls.Add(label12);
-            panel5.Location = new Point(210, 455);
+            panel5.Location = new Point(132, 333);
             panel5.Margin = new Padding(3, 4, 3, 4);
             panel5.Name = "panel5";
             panel5.Size = new Size(549, 183);
@@ -370,17 +370,17 @@
             panel6.Controls.Add(label5);
             panel6.Controls.Add(TextBoxDept);
             panel6.Controls.Add(textBoxTime);
-            panel6.Location = new Point(210, 670);
+            panel6.Location = new Point(132, 524);
             panel6.Margin = new Padding(3, 4, 3, 4);
             panel6.Name = "panel6";
-            panel6.Size = new Size(849, 198);
+            panel6.Size = new Size(549, 181);
             panel6.TabIndex = 47;
             panel6.Paint += panel6_Paint;
             // 
             // textBoxAreaID
             // 
             textBoxAreaID.BackColor = SystemColors.Window;
-            textBoxAreaID.Location = new Point(126, 46);
+            textBoxAreaID.Location = new Point(20, 49);
             textBoxAreaID.Margin = new Padding(3, 4, 3, 4);
             textBoxAreaID.Name = "textBoxAreaID";
             textBoxAreaID.Size = new Size(238, 27);
@@ -392,7 +392,7 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial Black", 12.25F, FontStyle.Bold);
             label6.ForeColor = Color.Black;
-            label6.Location = new Point(191, 11);
+            label6.Location = new Point(85, 14);
             label6.Name = "label6";
             label6.Size = new Size(90, 30);
             label6.TabIndex = 37;
@@ -401,11 +401,11 @@
             // dataGridView2
             // 
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(815, 455);
+            dataGridView2.Location = new Point(714, 333);
             dataGridView2.Margin = new Padding(3, 4, 3, 4);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(571, 184);
+            dataGridView2.Size = new Size(571, 183);
             dataGridView2.TabIndex = 49;
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             // 
@@ -427,10 +427,10 @@
             button3.BackColor = Color.DarkOrange;
             button3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             button3.ForeColor = SystemColors.ButtonFace;
-            button3.Location = new Point(1149, 799);
+            button3.Location = new Point(897, 649);
             button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
-            button3.Size = new Size(166, 54);
+            button3.Size = new Size(186, 38);
             button3.TabIndex = 17;
             button3.Text = "DELETE";
             button3.UseVisualStyleBackColor = false;
@@ -441,10 +441,10 @@
             button4.BackColor = Color.DarkOrange;
             button4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             button4.ForeColor = SystemColors.ButtonFace;
-            button4.Location = new Point(1149, 738);
+            button4.Location = new Point(897, 597);
             button4.Margin = new Padding(3, 4, 3, 4);
             button4.Name = "button4";
-            button4.Size = new Size(166, 54);
+            button4.Size = new Size(186, 38);
             button4.TabIndex = 21;
             button4.Text = "UPDATE";
             button4.UseVisualStyleBackColor = false;
@@ -455,10 +455,10 @@
             button1.BackColor = Color.DarkOrange;
             button1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             button1.ForeColor = SystemColors.ButtonFace;
-            button1.Location = new Point(1149, 670);
+            button1.Location = new Point(897, 549);
             button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(166, 54);
+            button1.Size = new Size(186, 38);
             button1.TabIndex = 15;
             button1.Text = "ADD";
             button1.UseVisualStyleBackColor = false;
@@ -471,7 +471,7 @@
             AutoSize = true;
             BackColor = Color.FromArgb(255, 128, 0);
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(1566, 881);
+            ClientSize = new Size(1344, 717);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button1);

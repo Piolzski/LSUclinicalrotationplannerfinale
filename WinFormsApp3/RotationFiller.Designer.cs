@@ -47,7 +47,6 @@
             button1 = new Button();
             button3 = new Button();
             button4 = new Button();
-            button2 = new Button();
             button6 = new Button();
             label10 = new Label();
             label11 = new Label();
@@ -72,6 +71,8 @@
             checklistboxExclude = new CheckedListBox();
             panel5 = new Panel();
             label17 = new Label();
+            rbtnFirstSem = new RadioButton();
+            rbtnSecondSem = new RadioButton();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -97,7 +98,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label2.Location = new Point(403, 142);
+            label2.Location = new Point(403, 141);
             label2.Name = "label2";
             label2.Size = new Size(182, 28);
             label2.TabIndex = 1;
@@ -108,7 +109,7 @@
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label3.Location = new Point(433, 22);
+            label3.Location = new Point(433, 21);
             label3.Name = "label3";
             label3.Size = new Size(107, 28);
             label3.TabIndex = 2;
@@ -129,7 +130,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(184, 256);
+            label5.Location = new Point(175, 216);
             label5.Name = "label5";
             label5.Size = new Size(123, 28);
             label5.TabIndex = 4;
@@ -140,7 +141,7 @@
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(115, 142);
+            label6.Location = new Point(130, 141);
             label6.Name = "label6";
             label6.Size = new Size(110, 28);
             label6.TabIndex = 5;
@@ -151,7 +152,7 @@
             label7.AutoSize = true;
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(115, 235);
+            label7.Location = new Point(130, 235);
             label7.Name = "label7";
             label7.Size = new Size(98, 28);
             label7.TabIndex = 6;
@@ -161,7 +162,7 @@
             // 
             dtpStartDate.CalendarFont = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dtpStartDate.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpStartDate.Location = new Point(37, 191);
+            dtpStartDate.Location = new Point(52, 191);
             dtpStartDate.Margin = new Padding(3, 4, 3, 4);
             dtpStartDate.Name = "dtpStartDate";
             dtpStartDate.Size = new Size(258, 25);
@@ -171,7 +172,7 @@
             // 
             dtpEndDate.CalendarFont = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dtpEndDate.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpEndDate.Location = new Point(37, 274);
+            dtpEndDate.Location = new Point(52, 275);
             dtpEndDate.Margin = new Padding(3, 4, 3, 4);
             dtpEndDate.Name = "dtpEndDate";
             dtpEndDate.Size = new Size(258, 25);
@@ -181,11 +182,11 @@
             // 
             lstClinicalInstructors.FormattingEnabled = true;
             lstClinicalInstructors.ItemHeight = 17;
-            lstClinicalInstructors.Location = new Point(175, 62);
+            lstClinicalInstructors.Location = new Point(181, 45);
             lstClinicalInstructors.Margin = new Padding(3, 4, 3, 4);
             lstClinicalInstructors.Name = "lstClinicalInstructors";
             lstClinicalInstructors.SelectionMode = SelectionMode.MultiExtended;
-            lstClinicalInstructors.Size = new Size(281, 106);
+            lstClinicalInstructors.Size = new Size(281, 89);
             lstClinicalInstructors.TabIndex = 9;
             lstClinicalInstructors.SelectedIndexChanged += lstClinicalInstructors_SelectedIndexChanged;
             // 
@@ -193,11 +194,11 @@
             // 
             lstYearLevels.FormattingEnabled = true;
             lstYearLevels.ItemHeight = 17;
-            lstYearLevels.Location = new Point(410, 66);
+            lstYearLevels.Location = new Point(410, 67);
             lstYearLevels.Margin = new Padding(3, 4, 3, 4);
             lstYearLevels.Name = "lstYearLevels";
             lstYearLevels.SelectionMode = SelectionMode.MultiExtended;
-            lstYearLevels.Size = new Size(148, 55);
+            lstYearLevels.Size = new Size(148, 72);
             lstYearLevels.TabIndex = 11;
             lstYearLevels.SelectedIndexChanged += lstYearLevels_SelectedIndexChanged;
             // 
@@ -205,11 +206,11 @@
             // 
             lstDepartments.FormattingEnabled = true;
             lstDepartments.ItemHeight = 17;
-            lstDepartments.Location = new Point(128, 86);
+            lstDepartments.Location = new Point(132, 67);
             lstDepartments.Margin = new Padding(3, 4, 3, 4);
             lstDepartments.Name = "lstDepartments";
             lstDepartments.SelectionMode = SelectionMode.MultiExtended;
-            lstDepartments.Size = new Size(213, 89);
+            lstDepartments.Size = new Size(213, 123);
             lstDepartments.TabIndex = 12;
             lstDepartments.SelectedIndexChanged += listBox4_SelectedIndexChanged;
             // 
@@ -228,7 +229,7 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Black;
-            label8.Location = new Point(115, 22);
+            label8.Location = new Point(130, 21);
             label8.Name = "label8";
             label8.Size = new Size(110, 28);
             label8.TabIndex = 17;
@@ -239,11 +240,11 @@
             lstTimeShifts.BackColor = Color.White;
             lstTimeShifts.FormattingEnabled = true;
             lstTimeShifts.ItemHeight = 17;
-            lstTimeShifts.Location = new Point(74, 66);
+            lstTimeShifts.Location = new Point(89, 67);
             lstTimeShifts.Margin = new Padding(3, 4, 3, 4);
             lstTimeShifts.Name = "lstTimeShifts";
             lstTimeShifts.SelectionMode = SelectionMode.MultiExtended;
-            lstTimeShifts.Size = new Size(175, 55);
+            lstTimeShifts.Size = new Size(175, 72);
             lstTimeShifts.TabIndex = 18;
             lstTimeShifts.SelectedIndexChanged += lstTimeShifts_SelectedIndexChanged;
             // 
@@ -255,7 +256,7 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(26, 348);
+            button1.Location = new Point(26, 398);
             button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
             button1.Size = new Size(191, 59);
@@ -272,7 +273,7 @@
             button3.FlatStyle = FlatStyle.Popup;
             button3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             button3.ForeColor = Color.White;
-            button3.Location = new Point(26, 435);
+            button3.Location = new Point(26, 485);
             button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
             button3.Size = new Size(191, 59);
@@ -289,7 +290,7 @@
             button4.FlatStyle = FlatStyle.Popup;
             button4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             button4.ForeColor = Color.White;
-            button4.Location = new Point(26, 527);
+            button4.Location = new Point(26, 577);
             button4.Margin = new Padding(3, 4, 3, 4);
             button4.Name = "button4";
             button4.Size = new Size(191, 59);
@@ -298,29 +299,12 @@
             button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
-            // button2
-            // 
-            button2.BackColor = Color.DarkOrange;
-            button2.FlatAppearance.BorderColor = Color.ForestGreen;
-            button2.FlatAppearance.BorderSize = 3;
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(26, 628);
-            button2.Margin = new Padding(3, 4, 3, 4);
-            button2.Name = "button2";
-            button2.Size = new Size(191, 59);
-            button2.TabIndex = 22;
-            button2.Text = "Delete Excel";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
-            // 
             // button6
             // 
             button6.BackColor = Color.DarkOrange;
             button6.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button6.ForeColor = Color.White;
-            button6.Location = new Point(128, 205);
+            button6.Location = new Point(128, 218);
             button6.Margin = new Padding(3, 4, 3, 4);
             button6.Name = "button6";
             button6.Size = new Size(217, 64);
@@ -333,7 +317,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(108, 289);
+            label10.Location = new Point(98, 249);
             label10.Name = "label10";
             label10.Size = new Size(94, 28);
             label10.TabIndex = 27;
@@ -344,7 +328,7 @@
             label11.AutoSize = true;
             label11.BackColor = Color.Transparent;
             label11.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(114, 384);
+            label11.Location = new Point(105, 344);
             label11.Name = "label11";
             label11.Size = new Size(90, 28);
             label11.TabIndex = 28;
@@ -354,7 +338,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.Location = new Point(112, 337);
+            label12.Location = new Point(103, 297);
             label12.Name = "label12";
             label12.Size = new Size(96, 28);
             label12.TabIndex = 29;
@@ -363,7 +347,7 @@
             // 
             // groupbox2
             // 
-            groupbox2.Location = new Point(208, 291);
+            groupbox2.Location = new Point(199, 251);
             groupbox2.Margin = new Padding(3, 4, 3, 4);
             groupbox2.Name = "groupbox2";
             groupbox2.Size = new Size(164, 25);
@@ -371,7 +355,7 @@
             // 
             // groupbox3
             // 
-            groupbox3.Location = new Point(208, 340);
+            groupbox3.Location = new Point(199, 300);
             groupbox3.Margin = new Padding(3, 4, 3, 4);
             groupbox3.Name = "groupbox3";
             groupbox3.Size = new Size(164, 25);
@@ -379,7 +363,7 @@
             // 
             // groupbox4
             // 
-            groupbox4.Location = new Point(208, 387);
+            groupbox4.Location = new Point(199, 347);
             groupbox4.Margin = new Padding(3, 4, 3, 4);
             groupbox4.Name = "groupbox4";
             groupbox4.Size = new Size(164, 25);
@@ -387,7 +371,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(194, 240);
+            textBox1.Location = new Point(194, 180);
             textBox1.Margin = new Padding(3, 4, 3, 4);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(238, 25);
@@ -397,7 +381,7 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label13.Location = new Point(205, 194);
+            label13.Location = new Point(205, 146);
             label13.Name = "label13";
             label13.Size = new Size(217, 28);
             label13.TabIndex = 35;
@@ -409,10 +393,10 @@
             btnClinicalinstructor.BackColor = Color.FromArgb(255, 128, 0);
             btnClinicalinstructor.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClinicalinstructor.ForeColor = Color.White;
-            btnClinicalinstructor.Location = new Point(216, 372);
+            btnClinicalinstructor.Location = new Point(216, 314);
             btnClinicalinstructor.Margin = new Padding(3, 4, 3, 4);
             btnClinicalinstructor.Name = "btnClinicalinstructor";
-            btnClinicalinstructor.Size = new Size(206, 54);
+            btnClinicalinstructor.Size = new Size(206, 53);
             btnClinicalinstructor.TabIndex = 36;
             btnClinicalinstructor.Text = "Deploy CI Rotation";
             btnClinicalinstructor.UseVisualStyleBackColor = false;
@@ -424,18 +408,19 @@
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
             panel1.BackgroundImageLayout = ImageLayout.Stretch;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(rbtnSecondSem);
+            panel1.Controls.Add(rbtnFirstSem);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(button9);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
-            panel1.Controls.Add(button2);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(253, 881);
+            panel1.Size = new Size(253, 735);
             panel1.TabIndex = 39;
             panel1.Paint += panel1_Paint;
             // 
@@ -460,7 +445,7 @@
             button9.FlatStyle = FlatStyle.Popup;
             button9.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             button9.ForeColor = Color.White;
-            button9.Location = new Point(26, 726);
+            button9.Location = new Point(26, 666);
             button9.Margin = new Padding(3, 4, 3, 4);
             button9.Name = "button9";
             button9.Size = new Size(191, 59);
@@ -474,10 +459,10 @@
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(26, 86);
+            pictureBox1.Location = new Point(26, 80);
             pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(177, 169);
+            pictureBox1.Size = new Size(186, 183);
             pictureBox1.TabIndex = 23;
             pictureBox1.TabStop = false;
             // 
@@ -499,7 +484,7 @@
             panel3.Controls.Add(lstYearLevels);
             panel3.Controls.Add(label3);
             panel3.Font = new Font("Arial", 9F);
-            panel3.Location = new Point(325, 44);
+            panel3.Location = new Point(268, 13);
             panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
             panel3.Size = new Size(623, 320);
@@ -511,7 +496,7 @@
             label18.AutoSize = true;
             label18.BackColor = Color.Transparent;
             label18.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label18.Location = new Point(403, 238);
+            label18.Location = new Point(403, 237);
             label18.Name = "label18";
             label18.Size = new Size(166, 28);
             label18.TabIndex = 20;
@@ -534,10 +519,10 @@
             panel2.Controls.Add(lstDepartments);
             panel2.Controls.Add(label4);
             panel2.Font = new Font("Arial", 9F);
-            panel2.Location = new Point(986, 44);
+            panel2.Location = new Point(907, 13);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(477, 320);
+            panel2.Size = new Size(447, 320);
             panel2.TabIndex = 41;
             panel2.Paint += panel2_Paint;
             // 
@@ -553,15 +538,15 @@
             panel4.Controls.Add(label1);
             panel4.Controls.Add(textBox1);
             panel4.Font = new Font("Arial", 9F);
-            panel4.Location = new Point(325, 381);
+            panel4.Location = new Point(268, 341);
             panel4.Margin = new Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(623, 445);
+            panel4.Size = new Size(623, 388);
             panel4.TabIndex = 42;
             // 
             // textBox16hrs
             // 
-            textBox16hrs.Location = new Point(194, 326);
+            textBox16hrs.Location = new Point(194, 274);
             textBox16hrs.Margin = new Padding(3, 4, 3, 4);
             textBox16hrs.Name = "textBox16hrs";
             textBox16hrs.Size = new Size(238, 25);
@@ -572,21 +557,22 @@
             label14.AutoSize = true;
             label14.BorderStyle = BorderStyle.FixedSingle;
             label14.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label14.Location = new Point(138, 289);
+            label14.Location = new Point(130, 228);
             label14.Name = "label14";
             label14.RightToLeft = RightToLeft.No;
             label14.Size = new Size(379, 30);
             label14.TabIndex = 38;
             label14.Text = "16 hour shift in week/Specified Weeks";
+            label14.Click += label14_Click;
             // 
             // checklistboxExclude
             // 
             checklistboxExclude.FormattingEnabled = true;
             checklistboxExclude.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
-            checklistboxExclude.Location = new Point(104, 37);
+            checklistboxExclude.Location = new Point(99, 45);
             checklistboxExclude.Margin = new Padding(3, 4, 3, 4);
             checklistboxExclude.Name = "checklistboxExclude";
-            checklistboxExclude.Size = new Size(281, 204);
+            checklistboxExclude.Size = new Size(281, 164);
             checklistboxExclude.TabIndex = 37;
             // 
             // panel5
@@ -603,22 +589,44 @@
             panel5.Controls.Add(label10);
             panel5.Controls.Add(label5);
             panel5.Font = new Font("Arial", 9F);
-            panel5.Location = new Point(986, 381);
+            panel5.Location = new Point(907, 341);
             panel5.Margin = new Padding(3, 4, 3, 4);
             panel5.Name = "panel5";
-            panel5.Size = new Size(477, 445);
+            panel5.Size = new Size(447, 388);
             panel5.TabIndex = 43;
             // 
             // label17
             // 
             label17.AutoSize = true;
             label17.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label17.Location = new Point(171, 5);
+            label17.Location = new Point(159, 12);
             label17.Name = "label17";
             label17.Size = new Size(151, 28);
             label17.TabIndex = 44;
             label17.Text = "Week Excluder";
             label17.Click += label17_Click;
+            // 
+            // rbtnFirstSem
+            // 
+            rbtnFirstSem.AutoSize = true;
+            rbtnFirstSem.Location = new Point(58, 307);
+            rbtnFirstSem.Name = "rbtnFirstSem";
+            rbtnFirstSem.Size = new Size(122, 24);
+            rbtnFirstSem.TabIndex = 21;
+            rbtnFirstSem.TabStop = true;
+            rbtnFirstSem.Text = "First Semester";
+            rbtnFirstSem.UseVisualStyleBackColor = true;
+            // 
+            // rbtnSecondSem
+            // 
+            rbtnSecondSem.AutoSize = true;
+            rbtnSecondSem.Location = new Point(47, 337);
+            rbtnSecondSem.Name = "rbtnSecondSem";
+            rbtnSecondSem.Size = new Size(144, 24);
+            rbtnSecondSem.TabIndex = 21;
+            rbtnSecondSem.TabStop = true;
+            rbtnSecondSem.Text = "Second Semester";
+            rbtnSecondSem.UseVisualStyleBackColor = true;
             // 
             // RotationFiller
             // 
@@ -626,12 +634,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SandyBrown;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(1566, 881);
+            ClientSize = new Size(1366, 735);
             Controls.Add(panel3);
             Controls.Add(panel1);
             Controls.Add(panel2);
-            Controls.Add(panel4);
             Controls.Add(panel5);
+            Controls.Add(panel4);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Margin = new Padding(3, 4, 3, 4);
             Name = "RotationFiller";
@@ -639,6 +647,7 @@
             Text = "Form1";
             Load += Form1_Load;
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel3.ResumeLayout(false);
@@ -672,7 +681,6 @@
         private Button button1;
         private Button button3;
         private Button button4;
-        private Button button2;
         private Button button6;
         private Label label10;
         private Label label11;
@@ -697,5 +705,7 @@
         private Button button9;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
+        private RadioButton rbtnSecondSem;
+        private RadioButton rbtnFirstSem;
     }
 }

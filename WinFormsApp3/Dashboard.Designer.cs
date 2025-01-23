@@ -48,7 +48,7 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold);
             button1.ForeColor = Color.BlanchedAlmond;
-            button1.Location = new Point(982, 745);
+            button1.Location = new Point(838, 567);
             button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
             button1.Size = new Size(155, 51);
@@ -71,7 +71,7 @@
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold);
             button2.ForeColor = Color.BlanchedAlmond;
-            button2.Location = new Point(784, 745);
+            button2.Location = new Point(640, 567);
             button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
             button2.Size = new Size(181, 51);
@@ -94,7 +94,7 @@
             button3.FlatStyle = FlatStyle.Popup;
             button3.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold);
             button3.ForeColor = Color.BlanchedAlmond;
-            button3.Location = new Point(1156, 745);
+            button3.Location = new Point(1012, 567);
             button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
             button3.Size = new Size(155, 51);
@@ -110,7 +110,7 @@
             BackColor = Color.LightCoral;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1566, 881);
+            ClientSize = new Size(1344, 717);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
